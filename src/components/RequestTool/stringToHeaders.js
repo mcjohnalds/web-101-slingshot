@@ -11,7 +11,10 @@ const stringToHeaders = (str: string): Headers | SyntaxError => {
     const headers = lines.map(stringToHeader);
     const index = headers.findIndex(R.isNil);
     if (index === -1) {
-      return R.fromPairs(headers);
+      // headers.filter(Boolean) doesn't alter the array but it converts from
+      // Array<?[string, string]> to Array<[string, string]> which makes flow
+      // stop complaining
+      return R.fromPairs(headers.filter(Boolean));
     } else {
       return new SyntaxError((index + 1).toString());
     }

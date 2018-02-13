@@ -1,6 +1,7 @@
 // @flow
+import type { Headers } from "./Headers";
 
-export type InputValue = {
+export type HTTPRequest = {
   method: string,
   path: string,
   headers: Headers | SyntaxError

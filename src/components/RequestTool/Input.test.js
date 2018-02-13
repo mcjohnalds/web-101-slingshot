@@ -4,6 +4,10 @@ import Input from "./Input";
 import { shallow } from "enzyme";
 
 describe("Input", () => {
+  it("shouldn't throw an error when rendered", () => {
+    shallow(<Input />);
+  });
+
   it("has an input to set the method", () => {
     const wrapper = shallow(<Input />);
     expect(wrapper.find("[name='method']")).not.toBeNull();

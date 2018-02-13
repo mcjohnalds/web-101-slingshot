@@ -1,6 +1,14 @@
 // @flow
 import * as React from "react";
+import type { HTTPResponse } from "./HTTPResponse";
 
-const Output = () => <div />;
+type Props = {
+  data: HTTPResponse
+};
+
+const Output = (props: Props) =>
+  <pre>
+    {props.data}
+  </pre>;
 
 export default Output;

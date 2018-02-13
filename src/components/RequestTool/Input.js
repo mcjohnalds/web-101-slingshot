@@ -2,12 +2,12 @@
 import * as React from "react";
 import headersToString from "./headersToString";
 import stringToHeaders from "./stringToHeaders";
-import type { InputValue } from "./InputValue";
+import type { HTTPRequest } from "./HTTPRequest";
 import type { Headers } from "./Headers";
 
 type Props = {
-  value: InputValue,
-  onChange: InputValue => void
+  value: HTTPRequest,
+  onChange: HTTPRequest => void
 };
 
 const Input = (props: Props) => {
