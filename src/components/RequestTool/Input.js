@@ -21,14 +21,13 @@ const Input = (props: Props) => {
       ...value,
       headers: stringToSimpleHeaders(event.target.value)
     });
-  const headers = simpleHeadersToString(value.headers || {});
   return (
     <div>
       <input name="method" value={value.method} onChange={onMethodChange} />
       <input name="path" value={value.path} onChange={onPathChange} />
       <textarea
         name="headers"
-        value={headers}
+        value={simpleHeadersToString(value.headers)}
         onChange={onSimpleHeadersChange}
       />
     </div>
