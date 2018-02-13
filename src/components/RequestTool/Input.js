@@ -1,13 +1,13 @@
 // @flow
 import * as React from "react";
-import headersToString from "./headersToString";
-import stringToHeaders from "./stringToHeaders";
-import type { HTTPRequest } from "./HTTPRequest";
-import type { Headers } from "./Headers";
+import simpleHeadersToString from "./simpleHeadersToString";
+import stringToSimpleHeaders from "./stringToSimpleHeaders";
+import type { SimpleRequest } from "./SimpleRequest";
+import type { SimpleHeaders } from "./SimpleHeaders";
 
 type Props = {
-  value: HTTPRequest,
-  onChange: HTTPRequest => void
+  value: SimpleRequest,
+  onChange: SimpleRequest => void
 };
 
 const Input = (props: Props) => {
@@ -16,14 +16,21 @@ const Input = (props: Props) => {
     props.onChange({ ...value, method: event.target.value });
   const onPathChange = event =>
     props.onChange({ ...value, path: event.target.value });
-  const onHeadersChange = event =>
-    props.onChange({ ...value, headers: stringToHeaders(event.target.value) });
-  const headers = headersToString(value.headers || {});
+  const onSimpleHeadersChange = event =>
+    props.onChange({
+      ...value,
+      headers: stringToSimpleHeaders(event.target.value)
+    });
+  const headers = simpleHeadersToString(value.headers || {});
   return (
     <div>
       <input name="method" value={value.method} onChange={onMethodChange} />
       <input name="path" value={value.path} onChange={onPathChange} />
-      <textarea name="headers" value={headers} onChange={onHeadersChange} />
+      <textarea
+        name="headers"
+        value={headers}
+        onChange={onSimpleHeadersChange}
+      />
     </div>
   );
 };

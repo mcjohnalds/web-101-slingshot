@@ -5,12 +5,12 @@ describe("request", () => {
     global.fetch = jest
       .fn()
       .mockReturnValueOnce(Promise.resolve(new Response("response")));
-    const httpRequest = {
+    const simpleRequest = {
       method: "GET",
       path: "/users",
       headers: { host: "example.com", accept: "text/plain;charset=UTF-8" }
     };
-    request(httpRequest);
+    request(simpleRequest);
     expect(fetch.mock.calls).toEqual([
       [
         "example.com/users",

@@ -1,9 +1,9 @@
-import stringToHeaders from "./stringToHeaders";
+import stringToSimpleHeaders from "./stringToSimpleHeaders";
 
-describe("stringToHeaders", () => {
+describe("stringToSimpleHeaders", () => {
   it("should convert empty input to no headers", () => {
-    expect(stringToHeaders("")).toEqual({});
-    expect(stringToHeaders(" ")).toEqual({});
+    expect(stringToSimpleHeaders("")).toEqual({});
+    expect(stringToSimpleHeaders(" ")).toEqual({});
   });
 
   it("should convert every line to a header", () => {
@@ -13,7 +13,9 @@ describe("stringToHeaders", () => {
         .mockImplementationOnce(() => ["host", "example.com"])
         .mockImplementationOnce(() => ["accept", "image/png"])
     );
-    expect(stringToHeaders("host: example.com\naccept: image/png")).toEqual({
+    expect(
+      stringToSimpleHeaders("host: example.com\naccept: image/png")
+    ).toEqual({
       host: "example.com",
       accept: "image/png"
     });
@@ -28,7 +30,7 @@ describe("stringToHeaders", () => {
         .mockImplementationOnce(() => ["accept", "image/png"])
     );
     expect(
-      stringToHeaders("host: example.com\n:foo\naccept: image/png")
+      stringToSimpleHeaders("host: example.com\n:foo\naccept: image/png")
     ).toBeInstanceOf(SyntaxError);
   });
 
@@ -41,7 +43,9 @@ describe("stringToHeaders", () => {
         .mockImplementationOnce(() => ["accept", "image/png"])
     );
     expect(
-      stringToHeaders("host: example.com\n:foo\naccept: image/png").toString()
+      stringToSimpleHeaders(
+        "host: example.com\n:foo\naccept: image/png"
+      ).toString()
     ).toEqual(expect.stringContaining("2"));
   });
 });

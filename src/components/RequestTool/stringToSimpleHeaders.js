@@ -1,9 +1,9 @@
 // @flow
 import R from "ramda";
-import type { Headers } from "./Headers";
+import type { SimpleHeaders } from "./SimpleHeaders";
 import stringToHeader from "./stringToHeader";
 
-const stringToHeaders = (str: string): Headers | SyntaxError => {
+const stringToSimpleHeaders = (str: string): SimpleHeaders | SyntaxError => {
   if (str.trim() === "") {
     return {};
   } else {
@@ -21,4 +21,4 @@ const stringToHeaders = (str: string): Headers | SyntaxError => {
   }
 };
 
-export default stringToHeaders;
+export default stringToSimpleHeaders;

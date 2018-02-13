@@ -1,9 +1,9 @@
 // @flow
 import * as React from "react";
-import type { HTTPResponse } from "./HTTPResponse";
+import type { SimpleResponse } from "./SimpleResponse";
 
 type Props = {
-  data: HTTPResponse
+  data: SimpleResponse
 };
 
 const Output = (props: Props) =>

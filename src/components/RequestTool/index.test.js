@@ -40,14 +40,14 @@ describe("RequestTool", () => {
 
   it("sends HTTP requests with the chosen settings", () => {
     const wrapper = shallow(<RequestTool />);
-    const httpRequest = {
+    const simpleRequest = {
       method: "GET",
       path: "/users",
       headers: { host: "example.com" }
     };
-    wrapper.find(Input).props().onChange(httpRequest);
+    wrapper.find(Input).props().onChange(simpleRequest);
     wrapper.find("[name='send']").simulate("click");
-    expect(request.mock.calls[0]).toEqual([httpRequest]);
+    expect(request.mock.calls[0]).toEqual([simpleRequest]);
   });
 
   it("displays the HTTP response", async () => {

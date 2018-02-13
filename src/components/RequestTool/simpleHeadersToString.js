@@ -1,8 +1,8 @@
 // @flow
 import R from "ramda";
-import type { Headers } from "./Headers";
+import type { SimpleHeaders } from "./SimpleHeaders";
 
-const headersToString = (headers: Headers): string =>
+const simpleHeadersToString = (headers: SimpleHeaders): string =>
   R.toPairs(headers)
     .map(([k, v]) => {
       if (typeof v === "string") {
@@ -13,4 +13,4 @@ const headersToString = (headers: Headers): string =>
     })
     .join("\n");
 
-export default headersToString;
+export default simpleHeadersToString;
