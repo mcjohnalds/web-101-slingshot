@@ -23,12 +23,12 @@ class RequestTool extends React.Component<Props, State> {
   send = async () =>
     this.setState({ response: await request(this.state.simpleRequest) });
 
+  onInputChange = (simpleRequest: SimpleRequest) =>
+    this.setState({ simpleRequest });
+
   render = () =>
     <div>
-      <Input
-        value={this.state.simpleRequest}
-        onChange={simpleRequest => this.setState({ simpleRequest })}
-      />
+      <Input value={this.state.simpleRequest} onChange={this.onInputChange} />
       <Button onClick={this.send} />
       <Output data={this.state.response} />
     </div>;
