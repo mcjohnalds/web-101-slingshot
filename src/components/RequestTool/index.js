@@ -28,7 +28,11 @@ class RequestTool extends React.Component<Props, State> {
   onError = (error: string) => this.setState({ error });
 
   render = () =>
-    <div>
+    <div
+      style={{
+        fontFamily: "'Roboto Mono', monospace"
+      }}
+    >
       <RequestInput
         value={this.state.requestInput}
         onChange={this.onRequestInputChange}
