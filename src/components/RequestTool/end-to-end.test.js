@@ -1,37 +1,42 @@
 import React from "react";
-import RequestTool from "./index.js";
 import { mount } from "enzyme";
+import delay from "delay";
+import RequestTool from "./index.js";
 
 describe("RequestTool", () => {
   test("it should render without crashing", () => {
     mount(<RequestTool />);
   });
 
-  test("when I click send it should send a request and display the response when I click send", async () => {
-    global.fetch = jest.fn().mockReturnValue(
-      Promise.resolve(
-        new Response(`["john", "jane"]`, {
-          status: 200,
-          statusText: "OK",
-          headers: { "content-type": "application/json" }
-        })
-      )
-    );
-    const wrapper = mount(<RequestTool />);
-    wrapper.find("[name='requestInput']").at(0).simulate("change", {
-      target: {
-        value: `GET /users HTTP/1.1
-host: example.com`
-      }
+  test("when I click send it should send a request and display the response", async () => {
+    const requestString = `GET /users HTTP/1.1
+host: example.com
+content-type: application/json`;
+    const requestObject = new Request("example.com/users", {
+      method: "GET",
+      headers: { "content-type": "application/json" }
     });
-    wrapper.find("[name='sendRequest']").simulate("click");
-    await new Promise(resolve => setTimeout(resolve, 0));
-    wrapper.update();
-    expect(wrapper.find("[data-name='responseOutput']").text()).toEqual(
-      expect.stringContaining(`HTTP/1.1 200 OK
+    const responseString = `HTTP/1.1 200 OK
 content-type: application/json
 
-["john", "jane"]`)
+["john", "jane"]`;
+    const responseObject = new Response(`["john", "jane"]`, {
+      status: 200,
+      statusText: "OK",
+      headers: { "content-type": "application/json" }
+    });
+    global.fetch = jest.fn().mockReturnValue(Promise.resolve(responseObject));
+    const wrapper = mount(<RequestTool />);
+    wrapper
+      .find("[name='requestInput']")
+      .at(0)
+      .simulate("change", { target: { value: requestString } });
+    wrapper.find("[name='sendRequest']").simulate("click");
+    expect(global.fetch.mock.calls).toEqual([[requestObject]]);
+    await delay();
+    wrapper.update();
+    expect(wrapper.find("[data-name='responseOutput']").text()).toEqual(
+      expect.stringContaining(responseString)
     );
   });
 
@@ -44,7 +49,7 @@ content-type: application/json
       }
     });
     wrapper.find("[name='sendRequest']").simulate("click");
-    await new Promise(resolve => setTimeout(resolve, 0));
+    await delay();
     wrapper.update();
     expect(wrapper.find("[data-name='errorOutput']")).toHaveLength(1);
   });
