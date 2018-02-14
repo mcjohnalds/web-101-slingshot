@@ -3,7 +3,6 @@ import * as React from "react";
 import simpleHeadersToString from "./simpleHeadersToString";
 import stringToSimpleHeaders from "./stringToSimpleHeaders";
 import type { SimpleRequest } from "./SimpleRequest";
-import type { SimpleHeaders } from "./SimpleHeaders";
 
 type Props = {
   value: SimpleRequest,

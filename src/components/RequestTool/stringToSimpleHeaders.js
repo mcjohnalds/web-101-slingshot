@@ -1,5 +1,5 @@
 // @flow
-import R from "ramda";
+import * as R from "ramda";
 import type { SimpleHeaders } from "./SimpleHeaders";
 import stringToHeader from "./stringToHeader";
 

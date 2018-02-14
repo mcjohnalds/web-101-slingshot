@@ -1,5 +1,4 @@
 // @flow
-import R from "ramda";
 import type { SimpleRequest } from "./SimpleRequest";
 import type { SimpleResponse } from "./SimpleResponse";
 import simpleRequestToFetchRequest from "./simpleRequestToFetchRequest";

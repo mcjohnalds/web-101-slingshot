@@ -13,7 +13,7 @@ type State = {
   response: SimpleResponse
 };
 
-class RequestTool extends React.Component<{}, State> {
+class RequestTool extends React.Component<Props, State> {
   state = {
     simpleRequest: { method: "", path: "", headers: { host: "" } },
     response: ""
