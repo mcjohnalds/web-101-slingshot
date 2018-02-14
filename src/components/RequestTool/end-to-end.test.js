@@ -11,10 +11,10 @@ describe("RequestTool", () => {
   test("when I click send it should send a request and display the response", async () => {
     const requestString = `GET /users HTTP/1.1
 host: example.com
-content-type: application/json`;
+accept: application/json`;
     const requestObject = new Request("example.com/users", {
       method: "GET",
-      headers: { "content-type": "application/json" }
+      headers: { accept: "application/json" }
     });
     const responseString = `HTTP/1.1 200 OK
 content-type: application/json
