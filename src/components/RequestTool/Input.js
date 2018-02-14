@@ -1,8 +1,10 @@
 // @flow
 import * as React from "react";
+import Textarea from "react-textarea-autosize";
 import simpleHeadersToString from "./simpleHeadersToString";
 import stringToSimpleHeaders from "./stringToSimpleHeaders";
 import type { SimpleRequest } from "./SimpleRequest";
+import styles from "./styles.module.css";
 
 type Props = {
   value: SimpleRequest,
@@ -21,13 +23,37 @@ const Input = (props: Props) => {
       headers: stringToSimpleHeaders(event.target.value)
     });
   return (
-    <div>
-      <input name="method" value={value.method} onChange={onMethodChange} />
-      <input name="path" value={value.path} onChange={onPathChange} />
-      <textarea
+    <div
+      style={{
+        backgroundColor: "#f5f5f5",
+        padding: "0.5rem",
+        fontFamily: "'Roboto Mono', monospace"
+      }}
+    >
+      <div style={{ display: "flex", marginBottom: "0.5rem" }}>
+        <div style={{ flex: 2, marginRight: "0.5rem" }}>
+          <input
+            name="method"
+            value={value.method}
+            onChange={onMethodChange}
+            className={styles.input}
+          />
+        </div>
+        <div style={{ flex: 7, margin: "0 0.5rem" }}>
+          <input
+            name="path"
+            value={value.path}
+            onChange={onPathChange}
+            className={styles.input}
+          />
+        </div>
+        <span style={{ marginLeft: "0.5rem" }}>HTTP/1.1</span>
+      </div>
+      <Textarea
         name="headers"
         value={simpleHeadersToString(value.headers)}
         onChange={onSimpleHeadersChange}
+        className={styles.input}
       />
     </div>
   );

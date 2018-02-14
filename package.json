@@ -6,7 +6,6 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "flow-bin": "^0.65.0",
-    "jest": "20.0.4",
     "normalize.css": "^8.0.0",
     "ramda": "^0.25.0",
     "react": "^16.2.0",
@@ -15,8 +14,9 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^5.0.0-alpha.9",
-    "react-scripts": "1.1.1",
+    "react-scripts": "^2.0.0-next.47d2d941",
     "react-test-renderer": "^16.2.0",
+    "react-textarea-autosize": "^5.2.1",
     "redux": "^3.7.2"
   },
   "scripts": {
@@ -26,5 +26,18 @@
     "eject": "react-scripts eject",
     "flow": "flow"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "browserslist": {
+    "development": [
+      "last 2 chrome versions",
+      "last 2 firefox versions",
+      "last 2 edge versions"
+    ],
+    "production": [
+      ">1%",
+      "last 4 versions",
+      "Firefox ESR",
+      "not ie < 11"
+    ]
+  }
 }
