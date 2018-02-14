@@ -31,7 +31,7 @@ const Input = (props: Props) => {
       }}
     >
       <div style={{ display: "flex", marginBottom: "0.5rem" }}>
-        <div style={{ flex: 2, marginRight: "0.5rem" }}>
+        <div style={{ flex: 1, marginRight: "0.5rem" }}>
           <input
             name="method"
             value={value.method}
@@ -39,7 +39,7 @@ const Input = (props: Props) => {
             className={styles.input}
           />
         </div>
-        <div style={{ flex: 7, margin: "0 0.5rem" }}>
+        <div style={{ flex: 5, margin: "0 0.5rem" }}>
           <input
             name="path"
             value={value.path}
