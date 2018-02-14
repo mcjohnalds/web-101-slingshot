@@ -2,6 +2,7 @@
 import React from "react";
 import Input from "./Input";
 import Output from "./Output";
+import Button from "./Button";
 import request from "./request";
 import type { SimpleRequest } from "./SimpleRequest";
 import type { SimpleResponse } from "./SimpleResponse";
@@ -28,7 +29,7 @@ class RequestTool extends React.Component<Props, State> {
         value={this.state.simpleRequest}
         onChange={simpleRequest => this.setState({ simpleRequest })}
       />
-      <button name="send" onClick={this.send} />
+      <Button onClick={this.send} />
       <Output data={this.state.response} />
     </div>;
 }

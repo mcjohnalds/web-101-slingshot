@@ -6,6 +6,7 @@ import ReactTestUtils from "react-dom/test-utils";
 import RequestTool from ".";
 import Input from "./Input";
 import Output from "./Output";
+import Button from "./Button";
 import request from "./request";
 
 describe("RequestTool", () => {
@@ -22,9 +23,9 @@ describe("RequestTool", () => {
     expect(wrapper.find(Input)).toHaveLength(1);
   });
 
-  it("has an button to send the request", () => {
+  it("has a Button", () => {
     const wrapper = shallow(<RequestTool />);
-    expect(wrapper.find("[name='send']")).toHaveLength(1);
+    expect(wrapper.find(Button)).toHaveLength(1);
   });
 
   it("has an Output", () => {
@@ -32,9 +33,9 @@ describe("RequestTool", () => {
     expect(wrapper.find(Output)).toHaveLength(1);
   });
 
-  it("sends a HTTP request when the send button is pressed", () => {
+  it("sends a HTTP request when the Button is pressed", () => {
     const wrapper = shallow(<RequestTool />);
-    wrapper.find("[name='send']").simulate("click");
+    wrapper.find(Button).simulate("click");
     expect(request.mock.calls).toHaveLength(1);
   });
 
@@ -46,7 +47,7 @@ describe("RequestTool", () => {
       headers: { host: "example.com" }
     };
     wrapper.find(Input).props().onChange(simpleRequest);
-    wrapper.find("[name='send']").simulate("click");
+    wrapper.find(Button).simulate("click");
     expect(request.mock.calls[0]).toEqual([simpleRequest]);
   });
 
@@ -57,7 +58,7 @@ describe("RequestTool", () => {
     });
     request.mockReturnValueOnce(promise);
     const wrapper = shallow(<RequestTool />);
-    wrapper.find("[name='send']").simulate("click");
+    wrapper.find(Button).simulate("click");
     finishRequest();
     promise.then(() => () =>
       expect(wrapper.find(Output).props().data).toEqual("response")

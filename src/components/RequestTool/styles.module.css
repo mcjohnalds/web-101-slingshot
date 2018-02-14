@@ -5,3 +5,15 @@
   width: 100%;
   resize: none;
 }
+
+.button {
+  width: 100%;
+  border: none;
+  border-radius: 0.2rem;
+  background: #747499;
+  color: white;
+  margin: 0.5rem 0;
+  height: 1.7rem;
+  padding: 0;
+  cursor: pointer;
+}
