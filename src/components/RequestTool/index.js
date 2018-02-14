@@ -23,7 +23,7 @@ class RequestTool extends React.Component<Props, State> {
   onRequestInputChange = (requestInput: string) =>
     this.setState({ requestInput });
 
-  onResponse = (response: string) => this.setState({ response });
+  onResponse = (response: string) => this.setState({ response, error: null });
 
   onError = (error: string) => this.setState({ error });
 
