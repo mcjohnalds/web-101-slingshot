@@ -2,6 +2,7 @@ jest.mock("./request");
 
 import React from "react";
 import { shallow } from "enzyme";
+import delay from "delay";
 import SendRequestButton from "./SendRequestButton";
 import request from "./request";
 
@@ -35,5 +36,18 @@ host: example.com`;
     wrapper.simulate("click");
     await promise;
     expect(onResponse.mock.calls).toEqual([[response]]);
+  });
+
+  it("call the onError prop when the request couldn't be sent", async () => {
+    const requestString = `GET /users HTTP/1.1
+host: example.com`;
+    request.mockReturnValue(Promise.reject(new Error("error")));
+    const onError = jest.fn();
+    const wrapper = shallow(
+      <SendRequestButton data={requestString} onError={onError} />
+    );
+    wrapper.simulate("click");
+    await delay();
+    expect(onError.mock.calls).toEqual([["error"]]);
   });
 });

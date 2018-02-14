@@ -4,6 +4,7 @@ import RequestTool from "./index";
 import RequestInput from "./RequestInput";
 import SendRequestButton from "./SendRequestButton";
 import ResponseOutput from "./ResponseOutput";
+import ErrorOutput from "./ErrorOutput";
 
 describe("RequestTool", () => {
   it("should pass request input to the SendRequestButton", () => {
@@ -18,5 +19,12 @@ describe("RequestTool", () => {
     wrapper.find(SendRequestButton).props().onResponse("response");
     wrapper.update();
     expect(wrapper.find(ResponseOutput).props().data).toEqual("response");
+  });
+
+  it("should display an ErrorOutput if the request couldn't be sent", () => {
+    const wrapper = shallow(<RequestTool />);
+    wrapper.find(SendRequestButton).props().onError("error");
+    wrapper.update();
+    expect(wrapper.find(ErrorOutput).props().data).toEqual("error");
   });
 });

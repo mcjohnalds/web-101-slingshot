@@ -35,7 +35,7 @@ content-type: application/json
     );
   });
 
-  xtest("if the request couldn't be sent I should see an error", async () => {
+  test("if the request couldn't be sent I should see an error", async () => {
     const wrapper = mount(<RequestTool />);
     wrapper.find("[name='requestInput']").at(0).simulate("change", {
       target: {

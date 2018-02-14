@@ -4,11 +4,15 @@ import request from "./request";
 
 type Props = {
   data: string,
-  onResponse: string => any
+  onResponse: string => any,
+  onError: string => any
 };
 
 const SendRequestButton = (props: Props) => {
-  const onClick = () => request(props.data).then(props.onResponse);
+  const onClick = () =>
+    request(props.data)
+      .then(props.onResponse)
+      .catch(error => props.onError(error.message));
   return <button onClick={onClick} name="sendRequest" />;
 };
 
