@@ -6,28 +6,21 @@ type Props = {
 };
 
 const ResponseOutput = (props: Props) =>
-  <div
+  <pre
+    data-name="responseOutput"
     style={{
-      marginTop: "0.5rem",
+      margin: "0.5rem 0 0 0",
+      padding: "0.5rem",
+      backgroundColor: "#f5f5f5",
+      border: "none",
+      resize: "none",
       width: "100%",
+      boxSizing: "border-box",
       height: "30rem",
-      overflow: "scroll"
+      overflow: "auto"
     }}
   >
-    <pre
-      data-name="responseOutput"
-      style={{
-        margin: "0",
-        padding: "0.5rem",
-        backgroundColor: "#f5f5f5",
-        border: "none",
-        resize: "none",
-        width: "100%",
-        height: "100%"
-      }}
-    >
-      {props.data}
-    </pre>
-  </div>;
+    {props.data}
+  </pre>;
 
 export default ResponseOutput;
