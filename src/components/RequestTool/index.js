@@ -1,46 +1,38 @@
 // @flow
 import React from "react";
-import Input from "./Input";
-import ErrorOutput from "./ErrorOutput";
-import Output from "./Output";
-import Button from "./Button";
-import request from "./request";
-import type { SimpleRequest } from "./SimpleRequest";
-import type { SimpleResponse } from "./SimpleResponse";
+import RequestInput from "./RequestInput";
+import SendRequestButton from "./SendRequestButton";
+import ResponseOutput from "./ResponseOutput";
 
 type Props = {};
 
 type State = {
-  simpleRequest: SimpleRequest,
-  response: SimpleResponse,
-  error: Error | null
+  requestInput: string,
+  response: string
 };
 
 class RequestTool extends React.Component<Props, State> {
   state = {
-    simpleRequest: { method: "", path: "", headers: { host: "" } },
-    response: "",
-    error: null
+    requestInput: "",
+    response: ""
   };
 
-  send = async () => {
-    try {
-      const response = await request(this.state.simpleRequest);
-      this.setState({ response });
-    } catch (error) {
-      this.setState({ error });
-    }
-  };
+  onRequestInputChange = (requestInput: string) =>
+    this.setState({ requestInput });
 
-  onInputChange = (simpleRequest: SimpleRequest) =>
-    this.setState({ simpleRequest });
+  onResponse = (response: string) => this.setState({ response });
 
   render = () =>
     <div>
-      <Input value={this.state.simpleRequest} onChange={this.onInputChange} />
-      {this.state.error && <ErrorOutput data={this.state.error} />}
-      <Button onClick={this.send} />
-      <Output data={this.state.response} error={this.state.error} />
+      <RequestInput
+        value={this.state.requestInput}
+        onChange={this.onRequestInputChange}
+      />
+      <SendRequestButton
+        data={this.state.requestInput}
+        onResponse={this.onResponse}
+      />
+      <ResponseOutput data={this.state.response} />
     </div>;
 }
 

@@ -1,12 +1,8 @@
 // @flow
-import type { SimpleRequest } from "./SimpleRequest";
-import type { SimpleResponse } from "./SimpleResponse";
-import simpleRequestToFetchRequest from "./simpleRequestToFetchRequest";
-import fetchResponseToSimpleResponse from "./fetchResponseToSimpleResponse";
+import stringToRequest from "./stringToRequest";
+import responseToString from "./responseToString";
 
-const request = (simpleRequest: SimpleRequest): Promise<SimpleResponse> =>
-  fetch(simpleRequestToFetchRequest(simpleRequest)).then(
-    fetchResponseToSimpleResponse
-  );
+const request: string => Promise<string> = async input =>
+  fetch(stringToRequest(input)).then(responseToString);
 
 export default request;
