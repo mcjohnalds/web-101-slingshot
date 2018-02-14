@@ -15,7 +15,7 @@ type State = {
 
 class RequestTool extends React.Component<{}, State> {
   state = {
-    simpleRequest: { method: "", path: "", headers: {} },
+    simpleRequest: { method: "", path: "", headers: { host: "" } },
     response: ""
   };
 
