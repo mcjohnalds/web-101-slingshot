@@ -29,4 +29,16 @@ accept: application/json`;
 accept: application/json`;
     expect(() => stringToRequest(requestString)).toThrow();
   });
+
+  it("should handle a body", () => {
+    const requestString = `POST /users HTTP/1.1
+host: example.com
+
+"sam"`;
+    const requestObject = new Request("example.com/users", {
+      method: "POST",
+      body: '"sam"'
+    });
+    expect(stringToRequest(requestString)).toEqual(requestObject);
+  });
 });
